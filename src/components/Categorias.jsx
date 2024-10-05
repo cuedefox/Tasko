@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { useAuth } from '../context/AuthContext'; // Asegúrate de importar tu contexto de autenticación
 import { useNavigate } from 'react-router-dom';
+import '../styles/categorias.scss';
 
 const Categorias = () => {
   const [categorias, setCategorias] = useState([]);
@@ -61,15 +62,6 @@ const Categorias = () => {
             <div
               key={categoria.id}
               onClick={() => handleCategoryClick(categoria.id)}
-              style={{
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                padding: '10px',
-                margin: '10px',
-                cursor: 'pointer',
-                width: '100px',
-                textAlign: 'center',
-              }}
             >
               {categoria.name}
             </div>

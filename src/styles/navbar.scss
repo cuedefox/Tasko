@@ -1,0 +1,58 @@
+.nav__container {
+    position: fixed; /* Fijo en la pantalla */
+    left: 0; /* Pegado a la izquierda */
+    top: 0; /* Empieza desde arriba */
+    height: 100%; /* Toma el 100% de la altura de la pantalla */
+    width: 30vh; /* Ancho del menú */
+    background-color: #242424; /* Color de fondo oscuro */
+    display: flex;
+    flex-direction: column; /* Alinea los items verticalmente */
+    justify-content: flex-start; /* Alineación vertical al inicio */
+    box-shadow: 0.2vh 0 5px rgba(0, 0, 0, 0.5); /* Sombra a la derecha */
+
+    &-perfil {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 30vh;
+
+        --s: 100px; /* control the size*/
+        --c1: #1d1d1d;
+        --c2: #4e4f51;
+        --c3: #3c3c3c;
+        
+        background:
+          repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 180deg) 
+           calc(.5*var(--s)) calc(.5*var(--s)*0.577),
+          repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 180deg);
+        background-size: var(--s) calc(var(--s)*0.577);
+        &-icon {
+            margin: 2vh 0vh 2vh 0vh;
+            width: 13vh;
+        }
+    }
+  }
+  
+
+  .nav__list {
+    list-style: none; /* Sin puntos en la lista */
+    padding: 0;
+    margin: 2vh;
+  }
+  
+  .nav__item {
+    margin:2vh 0; /* Espaciado entre los elementos del menú */
+  }
+  
+  .nav__link {
+    text-decoration: none; /* Quitar subrayado en los links */
+    color: #38ef7d; /* Color verde para los links */
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav__link:hover {
+    color: #fff; /* Cambia el color al pasar el mouse */
+  }
+  

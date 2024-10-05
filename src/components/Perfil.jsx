@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useUser } from '../context/UserContext';
 import { supabase } from '../services/supabaseClient';
 
 const Perfil = ({ setIsAuthenticated }) => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    };
-
-    fetchUser();
-  }, []);
+  const { user } = useUser(); 
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
