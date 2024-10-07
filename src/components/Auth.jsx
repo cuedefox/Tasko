@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
+import { useAuth } from '../context/AuthContext';
 import '../styles/auth.scss';
 import logo from '../images/logo-tasko.png';
 
-const Auth = ({ setIsAuthenticated }) => {
+const Auth = () => {
+  const { setUser, setIsAuthenticated } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegister, setIsRegister] = useState(false);
@@ -50,10 +52,7 @@ const Auth = ({ setIsAuthenticated }) => {
     }
 
     console.log('Sesión iniciada:', data);
-    
-    // Almacenar la sesión en localStorage
-    localStorage.setItem('supabase.auth.token', JSON.stringify(data.session));
-
+    setUser(data.session.user);
     setIsAuthenticated(true);
     navigate('/categorias');
   };
@@ -61,7 +60,6 @@ const Auth = ({ setIsAuthenticated }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Verificación si email o password están vacíos
     setEmailError(!email);
     setPasswordError(!password);
 

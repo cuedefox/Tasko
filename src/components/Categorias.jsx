@@ -12,9 +12,9 @@ const Categorias = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [newCategory, setNewCategory] = useState('');
-  const [categoryColor, setCategoryColor] = useState('#FF5733'); // Color por defecto
+  const [categoryColor, setCategoryColor] = useState('#FF5733');
   const [colors] = useState(['#FF6F61', '#FFDAA5', '#FFCC00', '#B3E3FF', '#1B9CFC', '#FF4D4D', '#FF8C00', '#A05EB5', '#4CAF50', '#D32F2F']);
-  const [loading, setLoading] = useState(true); // Estado para la carga
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategorias = async () => {
@@ -28,7 +28,7 @@ const Categorias = () => {
       } else {
         setCategorias(data);
       }
-      setLoading(false); // Cambiar a false una vez que se complete la carga
+      setLoading(false);
     };
 
     fetchCategorias();
@@ -48,10 +48,7 @@ const Categorias = () => {
         console.error('Error al agregar categoría:', error);
         alert(`Error: ${error.message}`);
       } else {
-        setCategorias([...categorias, { name: newCategory, user_id: user.id, color: categoryColor }]);
-        setShowModal(false);
-        setNewCategory('');
-        setCategoryColor('#FF5733');
+        window.location.reload();
       }
     }
   };
@@ -125,10 +122,10 @@ const Categorias = () => {
                     style={{
                       backgroundColor: color,
                     }}
-                    onClick={() => setCategoryColor(color)} // Cambiar el color seleccionado
+                    onClick={() => setCategoryColor(color)}
                   >
                     {categoryColor === color && (
-                      <i className="fa-solid fa-check color-check"></i> // Mostrar el check si está seleccionado
+                      <i className="fa-solid fa-check color-check"></i>
                     )}
                   </div>
                 ))}
