@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../styles/tareas.scss';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Tareas = () => {
   const { categoryId } = useParams();
@@ -29,16 +31,19 @@ const Tareas = () => {
     if (taskName) {
       const { data, error } = await supabase
         .from('tareas')
-        .insert([{ name: taskName, categoria_id: categoryId, completed: false }]);
-
+        .insert([{ name: taskName, categoria_id: categoryId, completed: false }])
+        .select();
+  
       if (error) {
         console.error('Error al agregar tarea:', error);
-      } else {
+      } else if (data && data.length > 0) {
         setTareas([...tareas, { id: data[0].id, name: taskName, categoria_id: categoryId, completed: false }]);
+      } else {
+        console.error('No se devolvieron datos tras insertar la tarea');
       }
     }
-  };
-
+  };  
+ 
   const handleToggleTask = async (taskId, completed) => {
     const { error } = await supabase
       .from('tareas')
@@ -70,23 +75,38 @@ const Tareas = () => {
   };
 
   const handleDeleteCategory = async () => {
-    const { error } = await supabase
-      .from('categorias')
-      .delete()
-      .eq('id', categoryId);
-
-    if (error) {
-      console.error('Error al eliminar la categoría:', error);
-    } else {
-      navigate('/categorias');
+    try {
+      const { error: taskError } = await supabase
+        .from('tareas')
+        .delete()
+        .eq('categoria_id', categoryId);
+  
+      if (taskError) {
+        console.error('Error al eliminar tareas de la categoría:', taskError);
+        return;
+      }
+      const { error: categoryError } = await supabase
+        .from('categorias')
+        .delete()
+        .eq('id', categoryId);
+  
+      if (categoryError) {
+        console.error('Error al eliminar la categoría:', categoryError);
+      } else {
+        navigate('/categorias');
+      }
+    } catch (error) {
+      console.error('Error en el proceso de eliminación:', error);
     }
   };
+  
 
   return (
-    <div>
-      <h1>Tareas de la Categoría</h1>
+    <div className='tareas__container'>
+      <h1 className='tareas__container-title'><i class="fa-solid fa-list-check"></i> Tareas</h1>
       <button onClick={handleAddTask}>Agregar Tarea</button>
       <button onClick={handleDeleteCategory}>Eliminar Categoría</button>
+      
       <ul>
         {tareas.map((tarea) => (
           <li key={tarea.id}>
