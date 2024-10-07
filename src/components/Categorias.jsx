@@ -13,7 +13,8 @@ const Categorias = () => {
   const [showModal, setShowModal] = useState(false);
   const [newCategory, setNewCategory] = useState('');
   const [categoryColor, setCategoryColor] = useState('#FF5733'); // Color por defecto
-  const [colors] = useState(['#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#33FFF6', '#FFDB33', '#8D33FF', '#33FF99', '#FF5734', '#FFD433']);
+  const [colors] = useState(['#FF6F61', '#FFDAA5', '#FFCC00', '#B3E3FF', '#1B9CFC', '#FF4D4D', '#FF8C00', '#A05EB5', '#4CAF50', '#D32F2F']);
+  const [loading, setLoading] = useState(true); // Estado para la carga
 
   useEffect(() => {
     const fetchCategorias = async () => {
@@ -27,6 +28,7 @@ const Categorias = () => {
       } else {
         setCategorias(data);
       }
+      setLoading(false); // Cambiar a false una vez que se complete la carga
     };
 
     fetchCategorias();
@@ -49,7 +51,7 @@ const Categorias = () => {
         setCategorias([...categorias, { name: newCategory, user_id: user.id, color: categoryColor }]);
         setShowModal(false);
         setNewCategory('');
-        setCategoryColor('#FF5733'); // Resetear color por defecto
+        setCategoryColor('#FF5733');
       }
     }
   };
@@ -60,13 +62,21 @@ const Categorias = () => {
 
   return (
     <div className='categorias__container'>
-      <h1 className='categorias__container-title'>Categorías</h1>
-      {categorias.length === 0 ? (
+      <h1 className='categorias__container-title'>
+        <i className="fa-solid fa-list categorias__container-icon"></i> Categorías
+      </h1>
+      {loading ? (
+        <div className="spinner-container">
+          <div className="spinner"></div> 
+        </div>
+      ) : categorias.length === 0 ? (
         <div>
           <p>No tienes categorías. ¿Quieres agregar una?</p>
-          <button onClick={handleAddCategory} className="categorias__container-addButton" role="button">
-            <i className="fa-solid fa-plus"></i>
-          </button>
+          <div onClick={handleAddCategory} className='categorias__container-div'>
+            <button className="categorias__container-addButton" role="button">
+              <i className="fa-solid fa-plus"></i>
+            </button>
+          </div>
         </div>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -80,9 +90,11 @@ const Categorias = () => {
               <h1>{categoria.name}</h1>
             </div>
           ))}
-          <button onClick={handleAddCategory} className="categorias__container-addButton" role="button">
-            <i className="fa-solid fa-plus"></i>
-          </button>
+          <div onClick={handleAddCategory} className='categorias__container-div'>
+            <button className="categorias__container-addButton" role="button">
+              <i className="fa-solid fa-plus"></i>
+            </button>
+          </div>
         </div>
       )}
 
@@ -104,7 +116,7 @@ const Categorias = () => {
 
             {/* Selector de colores */}
             <div className="form__group">
-              <label className="form__label">Selecciona un color:</label>
+              <label className='color-label'>Selecciona un color:</label>
               <div className="color-picker">
                 {colors.map((color) => (
                   <div

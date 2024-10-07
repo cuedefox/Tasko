@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 import '../styles/auth.scss';
@@ -8,7 +8,19 @@ const Auth = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegister, setIsRegister] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
 
   const signUp = async () => {
     const { data, error } = await supabase.auth.signUp({
@@ -18,6 +30,7 @@ const Auth = ({ setIsAuthenticated }) => {
 
     if (error) {
       console.error('Error al registrarse:', error.message);
+      setErrorMessage('Error al registrarse: ' + error.message);
       return;
     }
 
@@ -32,17 +45,30 @@ const Auth = ({ setIsAuthenticated }) => {
     });
 
     if (error) {
-      alert('Error al iniciar sesión:', error.message);
+      setErrorMessage('Email o contraseña incorrecta');
       return;
     }
 
     console.log('Sesión iniciada:', data);
+    
+    // Almacenar la sesión en localStorage
+    localStorage.setItem('supabase.auth.token', JSON.stringify(data.session));
+
     setIsAuthenticated(true);
     navigate('/categorias');
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Verificación si email o password están vacíos
+    setEmailError(!email);
+    setPasswordError(!password);
+
+    if (!email || !password) {
+      setErrorMessage('Por favor, complete todos los campos.');
+      return;
+    }
 
     if (isRegister) {
       await signUp();
@@ -53,55 +79,47 @@ const Auth = ({ setIsAuthenticated }) => {
 
   return (
     <div className='auth'>
+      {errorMessage && (
+        <div className="error-message">
+          <i className="fa-solid fa-triangle-exclamation"></i>
+          {errorMessage}
+        </div>
+      )}
       <div className='auth__container'>
-        <img src={logo} alt="Logo" className='auth-logo'/>
+        <img src={logo} alt="Logo" className='auth-logo' />
         <h2 className='auth__container-title'> {isRegister ? 'Registrarse' : 'Iniciar Sesión'}</h2>
-        <form onSubmit={handleSubmit} className='auth__container__form'>
-        {isRegister && (
-            <div className='form__group'>
-              <input
-                name='name'
-                type="text"
-                placeholder="Name"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className='auth__container__form-input name'
-              />
-              <label htmlFor="email" className="form__label label-name">Name</label>
-            </div>
-          )}
-          <div className='form__group'>
-          <input
-            name='email'
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className='auth__container__form-input email'
-          />
-          <label for="email" class="form__label label-email">Email</label>
+        <form onSubmit={handleSubmit} className='auth__container__form' noValidate>
+          <div className={`form__group ${emailError ? 'input-error' : ''}`}>
+            <input
+              name='email'
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className='auth__container__form-input email'
+            />
+            <label htmlFor="email" className="form__label label-email">Email</label>
           </div>
 
-          <div className='form__group'>
-          <input
-            name='password'
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className='auth__container__form-input password'
-          />
-          <label for="password" class="form__label label-password">Password</label>
+          <div className={`form__group ${passwordError ? 'input-error' : ''}`}>
+            <input
+              name='password'
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className='auth__container__form-input password'
+            />
+            <label htmlFor="password" className="form__label label-password">Password</label>
           </div>
 
-          <label class="checkbox-container">¿No tienes cuenta? Regístrate
+          <label className="checkbox-container">¿No tienes cuenta? Regístrate
             <input type="checkbox"
               checked={isRegister}
-              onChange={() => setIsRegister(!isRegister)}/>
-            <span class="checkmark"></span>
+              onChange={() => setIsRegister(!isRegister)} />
+            <span className="checkmark"></span>
           </label>
 
           <button type="submit" className="hbtn hb-fill-right">

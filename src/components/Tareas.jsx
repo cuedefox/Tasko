@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../styles/tareas.scss';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Tareas = () => {
   const { categoryId } = useParams();
@@ -83,10 +85,11 @@ const Tareas = () => {
   };
 
   return (
-    <div>
-      <h1>Tareas de la Categoría</h1>
+    <div className='tareas__container'>
+      <h1 className='tareas__container-title'><i class="fa-solid fa-list-check"></i> Tareas</h1>
       <button onClick={handleAddTask}>Agregar Tarea</button>
       <button onClick={handleDeleteCategory}>Eliminar Categoría</button>
+      
       <ul>
         {tareas.map((tarea) => (
           <li key={tarea.id}>
