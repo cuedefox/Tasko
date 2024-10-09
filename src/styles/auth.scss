@@ -23,7 +23,7 @@
 	flex-direction: column;
     background-color: #252525;
     box-shadow: 0vh 0vh 3vh 0.1vh #00bf6380;
-	padding: 2em;
+	padding: 2vh;
 	border-radius: 3vh;
 
     &-title{
@@ -44,7 +44,7 @@
     position: absolute;
     display: block;
     transition: 0.2s;
-    font-size: 0rem;
+    font-size: 1.8vh;
     color: #9b9b9b;
   }
 
@@ -72,7 +72,7 @@
     }
 
     &:placeholder-shown ~ .form__label {
-    font-size: 1rem;
+    font-size: 2vh;
     cursor: text;
     top: 3vh;
     }
@@ -88,7 +88,7 @@ input:-webkit-autofill {
   ~ .label-name{
     display: block;
     transition: 0.2s;
-    font-size: 0.8rem;
+    font-size: 1.8vh;
     color: #00bf63;
     font-weight:700;
     top: 1vh;
@@ -105,7 +105,7 @@ input:-webkit-autofill {
     ~ .label-password{
       display: block;
       transition: 0.2s;
-      font-size: 0.8rem;
+      font-size: 1.8vh;
       color: #00bf63;
       font-weight:700;
       top: 1vh;
@@ -122,7 +122,7 @@ input:-webkit-autofill {
     ~ .label-email{
       display: block;
       transition: 0.2s;
-      font-size: 0.8rem;
+      font-size: 1.8vh;
       color: #00bf63;
       font-weight:700;
       top: 1vh;    

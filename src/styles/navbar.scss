@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column; /* Alinea los items verticalmente */
     justify-content: flex-start; /* Alineación vertical al inicio */
-    box-shadow: 0.2vh 0 5px rgba(0, 0, 0, 0.5); /* Sombra a la derecha */
+    box-shadow: 0.2vh 0 1vh rgba(0, 0, 0, 0.5); /* Sombra a la derecha */
 
     &-perfil {
         align-items: center;

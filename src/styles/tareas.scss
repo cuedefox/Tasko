@@ -4,6 +4,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 10vh;
+
+    &-title {
+      font-size: 4vh;
+    }
+
 
     &-bar {
       display: flex;
@@ -63,9 +69,8 @@
         color: white;
         background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
         border: none;
-        box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
-        letter-spacing: 0.05em;
-        border-radius: 20em;
+        box-shadow: 0 1vh 3vh -1vh #14a73e98;
+        border-radius: 25vh;
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
@@ -210,6 +215,7 @@
     margin-left: 3vh;
     color: #9b9b9b;
     pointer-events: none;
+    font-size: 1.8vh;
   }
 }
 
@@ -278,6 +284,7 @@
     border: 0.4vh solid #4CAF50;
     border-radius: 1vh;
     height: 70vh;
+    font-size: 2vh;
     & p {
       text-align: justify;
     }
@@ -290,3 +297,14 @@
   }
 }
 
+.label-categoria {
+  font-size: 1.8vh;
+}
+
+.modal__text-title {
+  font-size: 3.3vh;
+}
+
+.tarea-title-id {
+  font-size: 4vh;
+}

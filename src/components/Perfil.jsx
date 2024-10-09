@@ -69,14 +69,15 @@ const Perfil = () => {
   }
 
   return (
+    <div className='perfil-center'>
     <div className='unique-perfil__container'>
       <h1 className='unique-perfil__title'>Perfil</h1>
       <div className='unique-perfil__info'>
-        <p><strong>Email:</strong> {user ? user.email : 'Cargando...'}</p>
-        <p><strong>Nickname:</strong> {nickname || 'Cargando...'}</p>
         {profile && profile.profile_image && (
           <img src={profile.profile_image} alt="Perfil" className='unique-perfil__image'/>
         )}
+        <p><strong>Email:</strong> {user ? user.email : 'Cargando...'}</p>
+        <p><strong>Nickname:</strong> {nickname || 'Cargando...'}</p>
         <label className='unique-perfil__label'>
           Nuevo Nickname:
           <input
@@ -99,6 +100,7 @@ const Perfil = () => {
         <button className='unique-perfil__button' onClick={handleProfileUpdate}>Actualizar perfil</button>
         <button className='unique-perfil__button unique-perfil__button--logout' onClick={handleLogout}>Cerrar sesión</button>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,35 +1,43 @@
 
 // Variables de colores para reutilización
-$unique-primary-color: #4a90e2;
-$unique-secondary-color: #f5f7fa;
-$unique-accent-color: #e94e77;
+$unique-primary-color: #00bf63;
+$unique-secondary-color: #353535;
+$unique-accent-color: #e94444;
 $unique-button-hover-color: darken($unique-primary-color, 10%);
 $unique-button-hover-accent: lighten($unique-accent-color, 10%);
-$unique-border-radius: 8px;
+$unique-border-radius: 1.5vh;
 $unique-font-family: 'Roboto', sans-serif;
 
+.perfil-center {
+
+  align-items: center;
+  justify-content: center;
+  margin: 8vh 0vh 0vh 53vh;
+}
+
 .unique-perfil__container {
-  max-width: 400px;
+  max-width: 45vh;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 5vh;
   background-color: $unique-secondary-color;
   border-radius: $unique-border-radius;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1vh 1.5vh rgba(0, 0, 0, 0.1);
   font-family: $unique-font-family;
   text-align: center;
   margin-left: 14vh;
   color: #fff;
+  align-items: center;
 
   .unique-perfil__title {
     color: $unique-primary-color;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 5vh;
+    margin-bottom: 1vh;
   }
 
   .unique-perfil__info p {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    color: #333;
+    font-size: 2vh;
+    margin: 1vh 0;
+    color: #ffffff;
 
     strong {
       color: $unique-primary-color;
@@ -38,46 +46,46 @@ $unique-font-family: 'Roboto', sans-serif;
 
   .unique-perfil__image {
     border-radius: 50%;
-    margin-top: 1rem;
-    border: 3px solid $unique-primary-color;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100px;
-    height: 100px;
+    margin-top: 0.5vh;
+    border: 0.5vh solid $unique-primary-color;
+    box-shadow: 0 0.5vh 1vh rgba(255, 255, 255, 0.1);
+    width: 12vh;
+    height: 12vh;
   }
 
   .unique-perfil__label {
     display: block;
     text-align: left;
-    margin: 1rem 0 0.5rem;
-    font-size: 0.9rem;
+    margin: 2vh 0 1vh;
+    font-size: 1.5vh;
     color: $unique-primary-color;
   }
 
   .unique-perfil__input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid lighten($unique-primary-color, 30%);
+    width: 95%;
+    padding: 1vh;
+    font-size: 2vh;
+    border: 0.4vh solid lighten($unique-primary-color, 30%);
     border-radius: $unique-border-radius;
-    margin-bottom: 1rem;
+    margin-bottom: 2vh;
     transition: border 0.3s ease;
 
     &:focus {
       outline: none;
       border-color: $unique-primary-color;
-      box-shadow: 0 0 5px rgba($unique-primary-color, 0.5);
+      box-shadow: 0 0 0.5vh rgba($unique-primary-color, 0.5);
     }
   }
 
   .unique-perfil__button {
     width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
+    padding: 1.5vh;
+    font-size: 2vh;
     color: white;
     background-color: $unique-primary-color;
     border: none;
     border-radius: $unique-border-radius;
-    margin: 1rem 0;
+    margin: 1vh 0;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
@@ -95,6 +103,6 @@ $unique-font-family: 'Roboto', sans-serif;
   }
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    padding: 2.5vh;
   }
 }

@@ -3,6 +3,11 @@
     color: #fff;
     margin-left: 14vh;
 
+    &-title {
+      margin-left: 2vh;
+      font-size: 4vh;
+    }
+
     &-icon {
       margin-right: 1vh;
     }
@@ -36,9 +41,8 @@
       color: white;
       background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
       border: none;
-      box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
-      letter-spacing: 0.05em;
-      border-radius: 20em;
+      box-shadow: 0 1vh 3vh -1vh #14a73e98;
+      border-radius: 25vh;
       user-select: none;
       -webkit-user-select: none;
       touch-action: manipulation;
@@ -95,7 +99,6 @@
     border-radius: 1.3vh;
     text-align: center;
 
-    // Animación al aparecer
     animation: slide-down 0.5s forwards;
   }
 
@@ -117,7 +120,7 @@
         }
     
         &:placeholder-shown ~ .form__label {
-        font-size: 1rem;
+        font-size: 1.8vh;
         cursor: text;
         top: 3vh;
         }
@@ -159,7 +162,7 @@
     ~ .label-categoria{
       display: block;
       transition: 0.2s;
-      font-size: 0.8rem;
+      font-size: 1.8vh;
       color: #00bf63;
       font-weight:700;
       top: 1vh;
@@ -245,11 +248,11 @@
   }
   
   .spinner {
-    border: 8px solid #f3f3f3; /* Color de fondo del spinner */
-    border-top: 8px solid #4CAF50;
+    border: 1vh solid #f3f3f3; /* Color de fondo del spinner */
+    border-top: 1vh solid #4CAF50;
     border-radius: 50%;
-    width: 40px; /* Tamaño del spinner */
-    height: 40px; /* Tamaño del spinner */
+    width: 4.5vh; /* Tamaño del spinner */
+    height: 4.5vh; /* Tamaño del spinner */
     animation: spin 1s linear infinite; /* Animación de giro */
   }
   

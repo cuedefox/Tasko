@@ -218,7 +218,7 @@ const Tareas = () => {
       {showModal && (
         <div className="categorias__modal">
           <div className="categorias__modal-content">
-            <h1>Nueva Tarea</h1>
+            <h1 className='modal__text-title'>Nueva Tarea</h1>
             <div className='form__group'>
               <input
                 type="text"
@@ -251,7 +251,7 @@ const Tareas = () => {
       {isShowEdit && (
         <div className="categorias__modal">
           <div className="categorias__modal-content">
-            <h1>Editar Tarea</h1>
+            <h1 className='modal__text-title'>Editar Tarea</h1>
             <div className='form__group'>
               <input
                 type="text"
@@ -286,7 +286,7 @@ const Tareas = () => {
         <div className="task__modal">
           <div className="task__modal-content">
             <button onClick={() => setShowTask(false)} className="task__modal-close" role="button"><i class="fa-solid fa-xmark"></i></button>
-            <h1>{selectedTask.name}</h1>
+            <h1 className='tarea-title-id'>{selectedTask.name}</h1>
             <div className='task__modal-descripcion'>
               <h1>Descripcion</h1>
               <p>{selectedTask.description}</p>
