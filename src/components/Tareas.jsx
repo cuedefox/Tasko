@@ -3,11 +3,13 @@ import { supabase } from '../services/supabaseClient';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/tareas.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Modal from './Modal';
 
 const Tareas = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const [tareas, setTareas] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchTareas = async () => {
@@ -99,29 +101,48 @@ const Tareas = () => {
       console.error('Error en el proceso de eliminación:', error);
     }
   };
-  
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   return (
     <div className='tareas__container'>
-      <h1 className='tareas__container-title'><i class="fa-solid fa-list-check"></i> Tareas</h1>
+      <div className='tareas__container-bar'>
+        <h1 className='tareas__container-title'><i className="fa-solid fa-list-check"></i> Tareas</h1>
+
+        <button className='tareas__container-deleteCategori' onClick={openModal}><i className="fas fa-trash"></i> Eliminar</button>
+      </div>
+
       <button onClick={handleAddTask}>Agregar Tarea</button>
-      <button onClick={handleDeleteCategory}>Eliminar Categoría</button>
-      
-      <ul>
+      <ul className='tareas-content'>
         {tareas.map((tarea) => (
-          <li key={tarea.id}>
-            <input
+          <li className='tareas__task' key={tarea.id}>
+            <input 
+              className='tareas__task-completecheck'
               type="checkbox"
               checked={tarea.completed}
               onChange={() => handleToggleTask(tarea.id, tarea.completed)}
             />
-            <span style={{ textDecoration: tarea.completed ? 'line-through' : 'none' }}>
+            <span className='tareas__task-title' style={{ textDecoration: tarea.completed ? 'line-through' : 'none' }}>
               {tarea.name}
             </span>
-            <button onClick={() => handleDeleteTask(tarea.id)}>Eliminar</button>
+            <button className='tareas__task-delete-button' onClick={() => handleDeleteTask(tarea.id)}>
+              <i className="fas fa-trash"></i>
+            </button>
           </li>
         ))}
       </ul>
+
+      {/* Modal de Confirmación */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={() => {
+          handleDeleteCategory();
+          closeModal();
+        }}
+        message="¿Estás seguro de que quieres eliminar esta categoría y todas las tareas asociadas?"
+      />
     </div>
   );
 };
