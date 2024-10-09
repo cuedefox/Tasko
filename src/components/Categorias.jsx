@@ -12,7 +12,7 @@ const Categorias = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [newCategory, setNewCategory] = useState('');
-  const [categoryColor, setCategoryColor] = useState('#FF5733');
+  const [categoryColor, setCategoryColor] = useState('#FF6F61');
   const [colors] = useState(['#FF6F61', '#FFDAA5', '#FFCC00', '#B3E3FF', '#1B9CFC', '#FF4D4D', '#FF8C00', '#A05EB5', '#4CAF50', '#D32F2F']);
   const [loading, setLoading] = useState(true);
 
@@ -51,11 +51,19 @@ const Categorias = () => {
         window.location.reload();
       }
     }
+    cancelNewCategory();
   };
 
   const handleCategoryClick = (categoryId) => {
     navigate(`/tareas/${categoryId}`);
   };
+
+  const cancelNewCategory = () => {
+    setNewCategory('');
+    setCategoryColor('#FF6F61');
+    setShowModal(false);
+  }
+
 
   return (
     <div className='categorias__container'>
@@ -105,7 +113,6 @@ const Categorias = () => {
                 type="text"
                 value={newCategory}
                 onChange={(e) => setNewCategory(e.target.value)}
-                placeholder="Nombre de la categoría"
                 className='categorias__modal-input categoria'
               />
               <label htmlFor="add" className="form__label label-categoria">Categoría</label>
@@ -134,7 +141,7 @@ const Categorias = () => {
 
             <div className="button-aling">
               <button onClick={handleSaveCategory} className="categorias__modal-button" role="button">Guardar</button>
-              <button onClick={() => setShowModal(false)} className="categorias__modal-button" role="button">Cancelar</button>
+              <button onClick={cancelNewCategory} className="categorias__modal-button" role="button">Cancelar</button>
             </div>
           </div>
         </div>

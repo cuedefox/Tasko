@@ -6,7 +6,7 @@ const Modal = ({ isOpen, onClose, onConfirm, message }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
+    <div className="modal">
       <div className="modal-content">
         <h3>Confirmación</h3>
         <p>{message}</p>

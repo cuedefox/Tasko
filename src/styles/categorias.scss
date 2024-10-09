@@ -1,6 +1,7 @@
 .categorias__container {
     padding: 1.5vh;
     color: #fff;
+    margin-left: 14vh;
 
     &-icon {
       margin-right: 1vh;
@@ -101,7 +102,7 @@
 
     &-input {
         font-family: 'Nunito', sans-serif;
-        width: 52vh;
+        width: 53vh;
         border: 0;
         border-bottom: 0.4vh solid #9b9b9b;
         outline: 0;
@@ -125,7 +126,7 @@
 
     &-button {
       margin-left: 1vh;
-      padding-left: 0.9vh;
+      padding: 1vh;
       display: flex;
       justify-content: center;
       align-items: center;

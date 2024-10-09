@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '../context/UserContext';
 import { supabase } from '../services/supabaseClient';
+import '../styles/perfil.scss';
 
 const Perfil = () => {
   const { user, profile, setProfile } = useUser();
@@ -68,33 +69,35 @@ const Perfil = () => {
   }
 
   return (
-    <div>
-      <h1>Perfil</h1>
-      <div>
+    <div className='unique-perfil__container'>
+      <h1 className='unique-perfil__title'>Perfil</h1>
+      <div className='unique-perfil__info'>
         <p><strong>Email:</strong> {user ? user.email : 'Cargando...'}</p>
         <p><strong>Nickname:</strong> {nickname || 'Cargando...'}</p>
         {profile && profile.profile_image && (
-          <img src={profile.profile_image} alt="Perfil" style={{ width: 100, height: 100 }} />
+          <img src={profile.profile_image} alt="Perfil" className='unique-perfil__image'/>
         )}
-        <label>
+        <label className='unique-perfil__label'>
           Nuevo Nickname:
           <input
             type="text"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
+            className='unique-perfil__input'
           />
         </label>
-        <label>
+        <label className='unique-perfil__label'>
           URL de imagen de perfil:
           <input
             type="text"
             value={profileImageUrl}
             onChange={(e) => setProfileImageUrl(e.target.value)}
             placeholder="Ingresa la URL de la imagen"
+            className='unique-perfil__input'
           />
         </label>
-        <button onClick={handleProfileUpdate}>Actualizar perfil</button>
-        <button onClick={handleLogout}>Cerrar sesión</button>
+        <button className='unique-perfil__button' onClick={handleProfileUpdate}>Actualizar perfil</button>
+        <button className='unique-perfil__button unique-perfil__button--logout' onClick={handleLogout}>Cerrar sesión</button>
       </div>
     </div>
   );
