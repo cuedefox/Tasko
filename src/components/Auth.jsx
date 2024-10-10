@@ -55,6 +55,7 @@ const Auth = () => {
     setUser(data.session.user);
     setIsAuthenticated(true);
     navigate('/categorias');
+    window.location.reload();
   };
 
   const handleSubmit = async (event) => {
