@@ -11,7 +11,7 @@ const Navbar = () => {
   const { user, profile } = useUser();
 
   const profileImage = profile && profile.profile_image ? profile.profile_image : perfilIcon;
-  const nickname = profile && profile.nickname ? profile.nickname : 'Santiago';
+  const nickname = profile && profile.nickname ? profile.nickname : 'No hay usuario';
 
   return (
     <nav className="nav__container">

@@ -23,6 +23,7 @@ const AppContent = () => {
     <>
       {isAuthenticated && location.pathname !== '/login' && <Navbar />}
       <div style={{ marginLeft: isAuthenticated && location.pathname !== '/login' ? '25vh' : '0', transition: 'margin-left 0.3s' }}>
+      
         <Routes>
           <Route path="/login" element={<Auth />} />
           <Route path="/" element={isAuthenticated ? <Navigate to="/categorias" /> : <Auth />} />
