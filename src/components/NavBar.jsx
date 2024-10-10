@@ -5,18 +5,19 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import perfilIcon from '../images/perfil-icon.png';
 import '../styles/navbar.scss';
+import { colors } from '@mui/material';
 
 const Navbar = () => {
   const { user, profile } = useUser();
 
   const profileImage = profile && profile.profile_image ? profile.profile_image : perfilIcon;
-  const nickname = profile && profile.nickname ? profile.nickname : 'No hay usuario';
+  const nickname = profile && profile.nickname ? profile.nickname : 'Santiago';
 
   return (
     <nav className="nav__container">
       <div className='nav__container-perfil'>
         <img src={profileImage} alt="Perfil" className='nav__container-perfil-icon' />
-        <div>{nickname}</div>
+        <h1 className='nickname'>{nickname}</h1>
       </div>
       <ul className="nav__list">
         <li className="nav__item">

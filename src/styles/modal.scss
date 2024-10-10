@@ -1,0 +1,57 @@
+.modal {
+  background-color: #515151;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.548);
+  
+  &-content {
+    font-size: 2.5vh;
+    position: relative;
+    background: #222222;
+    padding: 2.3vh;
+    border-radius: 3vh;
+    text-align: center;
+    width: 50vh;
+    height: 30vh;
+
+    // Animación al aparecer
+    animation: slide-down 0.5s forwards;
+  }
+}
+  
+  .modal-buttons {
+    margin-top: 8vh;
+  }
+  
+  .confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1.5vh 2.5vh;
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+    font-size: 2.1vh;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+    color: white;
+    padding: 1.5vh 2.5vh;
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+    margin-left: 3vh;
+    font-size: 2.1vh;
+  }
+  
+  .confirm-button:hover, .cancel-button:hover {
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  

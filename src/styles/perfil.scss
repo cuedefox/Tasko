@@ -1,0 +1,122 @@
+
+// Variables de colores para reutilización
+$unique-primary-color: #00bf63;
+$unique-secondary-color: #353535;
+$unique-accent-color: #e94444;
+$unique-button-hover-color: darken($unique-primary-color, 10%);
+$unique-button-hover-accent: lighten($unique-accent-color, 10%);
+$unique-border-radius: 1.5vh;
+$unique-font-family: 'Roboto', sans-serif;
+
+.perfil-center {
+
+  align-items: center;
+  justify-content: center;
+  margin: 8vh 0vh 0vh 53vh;
+}
+
+.unique-perfil__container {
+  max-width: 45vh;
+  margin: 0 auto;
+  padding: 5vh;
+  background-color: $unique-secondary-color;
+  border-radius: $unique-border-radius;
+  box-shadow: 0 1vh 1.5vh rgba(0, 0, 0, 0.1);
+  font-family: $unique-font-family;
+  text-align: center;
+  margin-left: 14vh;
+  color: #fff;
+  align-items: center;
+
+  .unique-perfil__title {
+    color: $unique-primary-color;
+    font-size: 5vh;
+    margin-bottom: 1vh;
+  }
+
+  .unique-perfil__info p {
+    font-size: 2vh;
+    margin: 1vh 0;
+    color: #ffffff;
+
+    strong {
+      color: $unique-primary-color;
+    }
+  }
+
+  .unique-perfil__image {
+    border-radius: 50%;
+    margin-top: 0.5vh;
+    border: 0.5vh solid $unique-primary-color;
+    box-shadow: 0 0.5vh 1vh rgba(255, 255, 255, 0.1);
+    width: 12vh;
+    height: 12vh;
+  }
+
+  .unique-perfil__label {
+    display: block;
+    text-align: left;
+    margin: 2vh 0 1vh;
+    font-size: 1.5vh;
+    color: $unique-primary-color;
+  }
+
+  .unique-perfil__input {
+    width: 95%;
+    padding: 1vh;
+    font-size: 2vh;
+    border: 0.4vh solid lighten($unique-primary-color, 30%);
+    border-radius: $unique-border-radius;
+    margin-bottom: 2vh;
+    transition: border 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $unique-primary-color;
+      box-shadow: 0 0 0.5vh rgba($unique-primary-color, 0.5);
+    }
+  }
+
+  .unique-perfil__button {
+    width: 100%;
+    padding: 1.5vh;
+    font-size: 2vh;
+    color: white;
+    background-color: $unique-primary-color;
+    border: none;
+    border-radius: $unique-border-radius;
+    margin: 1vh 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $unique-button-hover-color;
+    }
+
+    &--logout {
+      background-color: $unique-accent-color;
+
+      &:hover {
+        background-color: $unique-button-hover-accent;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 2.5vh;
+  }
+}
+
+.update-message {
+  position: fixed;
+  top: 3vh;
+  right: 3vh;
+  background-color: #45c441;
+  color: white;
+  padding: 2vh 2vh;
+  border-radius: 0.7vh;
+  z-index: 1000;
+  font-size: 2.2vh;
+  box-shadow: 0 0.4vh 1.2vh rgba(0, 0, 0, 0.1);
+  animation: fadeInOut 3s forwards;
+}
