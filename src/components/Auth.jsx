@@ -91,7 +91,7 @@ const Auth = () => {
             <input
               name='email'
               type="email"
-              placeholder="Email"
+              placeholder="."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -104,7 +104,7 @@ const Auth = () => {
             <input
               name='password'
               type="password"
-              placeholder="Contraseña"
+              placeholder="."
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

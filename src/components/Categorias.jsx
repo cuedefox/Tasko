@@ -107,12 +107,13 @@ const Categorias = () => {
       {showModal && (
         <div className="categorias__modal">
           <div className="categorias__modal-content">
-            <h2>Nueva Categoría</h2>
+            <h2 className='title-addcategori'>Nueva Categoría</h2>
             <div className="form__group">
               <input
                 type="text"
                 value={newCategory}
                 onChange={(e) => setNewCategory(e.target.value)}
+                placeholder='.'
                 className='categorias__modal-input categoria'
               />
               <label htmlFor="add" className="form__label label-categoria">Categoría</label>

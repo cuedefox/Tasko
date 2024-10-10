@@ -8,6 +8,7 @@ const Perfil = () => {
   const [nickname, setNickname] = useState('');
   const [profileImageUrl, setProfileImageUrl] = useState('');
   const [loading, setLoading] = useState(true);
+  const [showUpdate, setShowUpdate] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -32,12 +33,8 @@ const Perfil = () => {
         })
         .eq('user_id', user.id);
 
-      if (updateError) {
-        console.error(updateError);
-      } else {
-        alert('Perfil actualizado con éxito');
         setProfile({ ...profile, nickname, profile_image: profileImageUrl });
-      }
+
     } else {
       const { error: insertError } = await supabase
         .from('profiles')
@@ -46,22 +43,17 @@ const Perfil = () => {
           nickname: nickname,
           profile_image: profileImageUrl,
         });
-
-      if (insertError) {
-        console.error(insertError);
-      } else {
-        alert('Perfil creado con éxito');
-      }
     }
+
+    setShowUpdate(true);
+    const timer = setTimeout(() => {
+      setShowUpdate(false);
+    }, 4000);
+    return () => clearTimeout(timer);
   };
 
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error('Error al cerrar sesión:', error);
-    } else {
-      alert('Sesión cerrada con éxito');
-    }
+    const { } = await supabase.auth.signOut();
   };
 
   if (loading) {
@@ -70,6 +62,11 @@ const Perfil = () => {
 
   return (
     <div className='perfil-center'>
+      {showUpdate && (
+        <div className="update-message">
+          <i className="fa-solid fa-triangle-exclamation"></i> Perfil actualizado con exito
+        </div>
+      )}
     <div className='unique-perfil__container'>
       <h1 className='unique-perfil__title'>Perfil</h1>
       <div className='unique-perfil__info'>

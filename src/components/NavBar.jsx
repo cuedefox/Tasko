@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav className="nav__container">
       <div className='nav__container-perfil'>
         <img src={profileImage} alt="Perfil" className='nav__container-perfil-icon' />
-        <div className='nickname'>{nickname}</div>
+        <h1 className='nickname'>{nickname}</h1>
       </div>
       <ul className="nav__list">
         <li className="nav__item">

@@ -162,7 +162,6 @@
     ~ .label-categoria{
       display: block;
       transition: 0.2s;
-      font-size: 1.8vh;
       color: #00bf63;
       font-weight:700;
       top: 1vh;
@@ -261,3 +260,7 @@
     100% { transform: rotate(360deg); }
   }
   
+
+  .title-addcategori {
+    font-size: 3.5vh;
+  }
