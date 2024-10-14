@@ -9,13 +9,14 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const Categorias = () => {
   const [categorias, setCategorias] = useState([]);
   const { user } = useAuth();
-  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [newCategory, setNewCategory] = useState('');
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const [categoryColor, setCategoryColor] = useState('#FF6F61');
   const [colors] = useState(['#FF6F61', '#FFDAA5', '#FFCC00', '#B3E3FF', '#1B9CFC', '#FF4D4D', '#FF8C00', '#A05EB5', '#4CAF50', '#D32F2F']);
-  const [loading, setLoading] = useState(true);
 
+  // Obtener catagorias desde la base de datos
   useEffect(() => {
     const fetchCategorias = async () => {
       const { data, error } = await supabase
@@ -34,10 +35,12 @@ const Categorias = () => {
     fetchCategorias();
   }, [user]);
 
+  // Modal agregar categoria
   const handleAddCategory = () => {
     setShowModal(true);
   };
 
+  // Guardar nueva categoria
   const handleSaveCategory = async () => {
     if (newCategory) {
       const { error } = await supabase
@@ -54,10 +57,12 @@ const Categorias = () => {
     cancelNewCategory();
   };
 
+  // Ingresar a la categoria
   const handleCategoryClick = (categoryId) => {
     navigate(`/tareas/${categoryId}`);
   };
 
+  // Cancelar el agregar categoria
   const cancelNewCategory = () => {
     setNewCategory('');
     setCategoryColor('#FF6F61');
