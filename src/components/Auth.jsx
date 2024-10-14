@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 import { useAuth } from '../context/AuthContext';
-import '../styles/auth.scss';
 import logo from '../images/logo-tasko.png';
+import '../styles/auth.scss';
 
 const Auth = () => {
   const { setUser, setIsAuthenticated } = useAuth();
@@ -15,6 +15,7 @@ const Auth = () => {
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
 
+  // Mostrar mensaje de error
   useEffect(() => {
     if (errorMessage) {
       const timer = setTimeout(() => {
@@ -24,6 +25,7 @@ const Auth = () => {
     }
   }, [errorMessage]);
 
+  // Funcion para registrarse
   const signUp = async () => {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -40,6 +42,7 @@ const Auth = () => {
     alert('Registro exitoso, por favor verifica tu email para poder loguearte.');
   };
 
+  // Funcion para loguearse
   const signIn = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -58,6 +61,7 @@ const Auth = () => {
     window.location.reload();
   };
 
+  // Submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -84,6 +88,7 @@ const Auth = () => {
           {errorMessage}
         </div>
       )}
+
       <div className='auth__container'>
         <img src={logo} alt="Logo" className='auth-logo' />
         <h2 className='auth__container-title'> {isRegister ? 'Registrarse' : 'Iniciar Sesión'}</h2>

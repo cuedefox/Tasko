@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { useParams, useNavigate } from 'react-router-dom';
+import Modal from './Modal';
 import '../styles/tareas.scss';
 import '../styles/categorias.scss'
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Modal from './Modal';
 
 const Tareas = () => {
   const { categoryId } = useParams();
@@ -20,10 +20,11 @@ const Tareas = () => {
   const [editDescription, setEditDescription] = useState('');
   const [isShowTask, setShowTask] = useState(false);
   const [isShowEdit, setShowEdit] = useState(false);
-  
+
   const [selectedTask, setSelectedTask] = useState(null);
   const [isDelayed, setIsDelayed] = useState(false);
 
+  // Obtener tareas 
   useEffect(() => {
     const fetchTareas = async () => {
       const { data, error } = await supabase
@@ -42,6 +43,7 @@ const Tareas = () => {
     fetchTareas();
   }, [categoryId]);
 
+  // Guardar tarea
   const handleSaveTask = async () => {
     if (newTask) {
       const { data, error } = await supabase
@@ -60,6 +62,7 @@ const Tareas = () => {
     }
   };
 
+  // Completar tarea
   const handleToggleTask = async (taskId, completed) => {
     setShowTask(false)
     const { error } = await supabase
@@ -74,6 +77,7 @@ const Tareas = () => {
     }
   };
 
+  // Eliminar tarea
   const handleDeleteTask = async (taskId) => {
     if (taskId) {
       const { error } = await supabase
@@ -92,6 +96,7 @@ const Tareas = () => {
     setShowDeleteTask(false);
   };
 
+  // Editar tarea
   const handleEditTask = async (taskId) => {
     setTimeout(() => {
       setIsDelayed(true);
@@ -101,6 +106,7 @@ const Tareas = () => {
     setSelectedTask(taskId);
   }
   
+  // Guardar la edicion de la tarea
   const handleSaveEdit = async (taskId) => {
     const { error } = await supabase
       .from('tareas')
@@ -115,6 +121,7 @@ const Tareas = () => {
     cancelEditTask();
   };
 
+  // Eliminar categoria
   const handleDeleteCategory = async () => {
     try {
       const { error: taskError } = await supabase
@@ -140,11 +147,13 @@ const Tareas = () => {
       console.error('Error en el proceso de eliminación:', error);
     }
   };
-
+  
+  // Mostrar modal de agregar tarea
   const handleAddTask = () => {
     setShowModal(true);
   };
 
+  // Abrir y cerrar modal de confirmacion
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
@@ -152,19 +161,22 @@ const Tareas = () => {
     setSelectedTask(tarea);
     setShowTask(true);
   };
-
+  
+  // Cancelar nueva tarea
   const cancelNewTask = () => {
     setNewTask('');
     setNewDescription('');
     setShowModal(false);
   };
 
- const cancelEditTask = () => {
+  // Cancelar edicion de tarea
+  const cancelEditTask = () => {
     setEditTask('');
     setEditDescription('');
     setShowEdit(false);
   };
   
+  // Mostrar eliminar tarea
   const handleShowDeleteTask = (boolean) => {
     setTimeout(() => {
       setIsDelayed(true);

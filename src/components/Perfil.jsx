@@ -10,6 +10,7 @@ const Perfil = () => {
   const [loading, setLoading] = useState(true);
   const [showUpdate, setShowUpdate] = useState(false);
 
+  // Obtener perfil
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
@@ -23,6 +24,7 @@ const Perfil = () => {
     fetchProfile();
   }, [profile]);
 
+  // Actualizar perfil
   const handleProfileUpdate = async () => {
     if (profile) {
       const { error: updateError } = await supabase
@@ -52,6 +54,7 @@ const Perfil = () => {
     return () => clearTimeout(timer);
   };
 
+  // Cerrar session
   const handleLogout = async () => {
     const { } = await supabase.auth.signOut();
   };
